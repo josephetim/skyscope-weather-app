@@ -1,40 +1,61 @@
 import { Link, Stack } from 'expo-router';
-import { StyleSheet } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
-import { Text, View } from '@/components/Themed';
+import { AppBackground } from '@/src/shared/components/AppBackground';
+import { GlassCard } from '@/src/shared/components/GlassCard';
+import { useAppTheme } from '@/src/shared/hooks/useAppTheme';
+import { APP_FONTS } from '@/src/shared/theme/theme';
 
 export default function NotFoundScreen() {
-  return (
-    <>
-      <Stack.Screen options={{ title: 'Oops!' }} />
-      <View style={styles.container}>
-        <Text style={styles.title}>This screen doesn't exist.</Text>
+  const { theme } = useAppTheme();
 
-        <Link href="/" style={styles.link}>
-          <Text style={styles.linkText}>Go to home screen!</Text>
-        </Link>
+  return (
+    <AppBackground>
+      <Stack.Screen options={{ title: 'Not found' }} />
+      <View style={styles.container}>
+        <GlassCard style={styles.card}>
+          <Text style={[styles.title, { color: theme.palette.text }]}>This route is off the map.</Text>
+          <Text style={[styles.description, { color: theme.palette.textMuted }]}>
+            The page you opened does not exist in SkyScope&apos;s navigation tree.
+          </Text>
+          <Link asChild href="/">
+            <Pressable style={[styles.button, { backgroundColor: theme.palette.accent }]}>
+              <Text style={styles.buttonLabel}>Back to dashboard</Text>
+            </Pressable>
+          </Link>
+        </GlassCard>
       </View>
-    </>
+    </AppBackground>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
+    paddingHorizontal: 20,
     justifyContent: 'center',
-    padding: 20,
+  },
+  card: {
+    gap: 16,
   },
   title: {
-    fontSize: 20,
-    fontWeight: 'bold',
+    fontFamily: APP_FONTS.display,
+    fontSize: 30,
   },
-  link: {
-    marginTop: 15,
-    paddingVertical: 15,
+  description: {
+    fontFamily: APP_FONTS.body,
+    fontSize: 15,
+    lineHeight: 22,
   },
-  linkText: {
+  button: {
+    alignSelf: 'flex-start',
+    paddingHorizontal: 18,
+    paddingVertical: 12,
+    borderRadius: 999,
+  },
+  buttonLabel: {
+    color: '#FFFFFF',
+    fontFamily: APP_FONTS.bodyBold,
     fontSize: 14,
-    color: '#2e78b7',
   },
 });

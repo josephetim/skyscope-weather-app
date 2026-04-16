@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "skyscope",
+    "name": "SkyScope",
     "slug": "skyscope",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -22,7 +22,8 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.druidivine.skyscope"
     },
     "web": {
       "bundler": "metro",
@@ -34,6 +35,12 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "7722dc4e-30d0-46ec-854d-9d7248ab87c2"
+      }
     }
   }
 }
